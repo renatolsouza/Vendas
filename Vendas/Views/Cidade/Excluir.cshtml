@@ -1,0 +1,42 @@
+﻿@model Vendas.Models.Cadastro.CidadeModel
+
+@{
+    ViewData["title"] = "Excluir Cidade";
+}
+<div class="mb-5 text-center">
+    <h1 class="text-dark"> Excluir Cidade</h1>
+</div>
+
+<div class="container bg-secondary bg-opacity-10 p-5 rounded-5">
+
+    <form method="post" asp-controller="Cidade" asp-action="Excluir">
+        <input type="hidden" asp-for="IDCIDADE" />
+
+        <h2 class="text-danger"> Tem certeza que quer Excluir esse item ?</h2>
+
+        <div class="mb-3  text-black">
+            <label for="Descricao">Descrição</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="NOME" id="Descricao" placeholder="Descrição">
+            <span class="text-danger" asp-validation-for="NOME"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Uf">Uf</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Uf" id="Uf" placeholder="UF">
+            <span class="text-danger" asp-validation-for="Uf"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Codmunicipio">IBGE</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="IBGE" id="CodMunicipio" placeholder="Codigo do Município">
+            <span class="text-danger" asp-validation-for="IBGE"></span>
+        </div>
+
+        <div class="d-flex gap-5 mt-5">
+            <button type="submit" class="btn btn-danger w-50">Excluir</button>
+            <a class="btn btn-primary w-50" asp-controller="Cidade" asp-action="Index">Voltar</a>
+
+        </div>
+
+    </form>
+</div>

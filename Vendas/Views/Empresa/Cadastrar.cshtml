@@ -1,0 +1,169 @@
+﻿@model Vendas.Models.Cadastro.EmpresaModel
+
+@{
+    ViewData["title"] = "Cadastrar Empresa";
+}
+<div class="mb-5 text-center">
+    <h1 class="text-dark"> Cadastro de Empresa</h1>
+</div>
+
+<div class="container bg-secondary bg-opacity-10 p-5 rounded-5">
+
+    <form method="post" asp-controller="Empresa" asp-action="Cadastrar">
+       
+        <div class="mb-3  text-black">
+            <label for="Nome">Nome</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Nome" id="Nome" placeholder="Nome">
+            <span class="text-danger" asp-validation-for="Nome"></span>
+        </div>
+              
+        <div class="form-group">
+            <label asp-for="Dtcadastro" class="control-label"></label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Dtcadastro" id="datepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+            <span class="text-danger" asp-validation-for="Dtcadastro"></span>
+        </div>
+        @section Scripts
+        {
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script>
+                $(function () {
+                    $("#datepicker").datepicker();
+                });
+            </script>
+        }
+
+        <div class="mb-3  text-black">
+            <label for="Endereco">Endereco</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Endereco" id="Endereco" placeholder="Endereco">
+            <span class="text-danger" asp-validation-for="Endereco"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Numero">Numero</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Numero" id="Numero" placeholder="Numero">
+            <span class="text-danger" asp-validation-for="Numero"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Complemento">Complemento</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Complemento" id="Complemento" placeholder="Complemento">
+            <span class="text-danger" asp-validation-for="Complemento"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Bairro">Bairro</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Bairro" id="Bairro" placeholder="Bairro">
+            <span class="text-danger" asp-validation-for="Bairro"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Idmunicipio">Idmunicipio</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Idmunicipio" id="Idmunicipio" placeholder="Idmunicipio">
+            <span class="text-danger" asp-validation-for="Idmunicipio"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Idpais">Idpais</label>
+           @*  <input type="text" class="form-control" maxlength="40" asp-for="Idpais" id="Idpais" placeholder="Idpais"> *@
+
+            <select name="ddlPais">
+                <option>2010</option>
+                <option>2011</option>
+                <option>2012</option>
+                <option>2013</option>
+                <option>2014</option>
+                <option>2015</option>
+            </select>
+
+            <span class="text-danger" asp-validation-for="Idpais"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Idestado">Idestado</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Idestado" id="Idestado" placeholder="Idestado">
+            <span class="text-danger" asp-validation-for="Idestado"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Cep">Cep</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Cep" id="Cep" placeholder="Cep">
+            <span class="text-danger" asp-validation-for="Cep"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Telefone">Telefone</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Telefone" id="Telefone" placeholder="Telefone">
+            <span class="text-danger" asp-validation-for="Telefone"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Cnpj">Cnpj</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Cnpj" id="Cnpj" placeholder="Cnpj">
+            <span class="text-danger" asp-validation-for="Cnpj"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Inscestadual">Inscestadual</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Inscestadual" id="Inscestadual" placeholder="Inscestadual">
+            <span class="text-danger" asp-validation-for="Inscestadual"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Inscmunicipal">Inscmunicipal</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Inscmunicipal" id="Inscmunicipal" placeholder="Inscmunicipal">
+            <span class="text-danger" asp-validation-for="Inscmunicipal"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Titular">Titular</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Titular" id="Titular" placeholder="Titular">
+            <span class="text-danger" asp-validation-for="Titular"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Nomefantasia">Nomefantasia</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Nomefantasia" id="Nomefantasia" placeholder="Nomefantasia">
+            <span class="text-danger" asp-validation-for="Nomefantasia"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Cnae">Cnae</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Cnae" id="Cnae" placeholder="Cnae">
+            <span class="text-danger" asp-validation-for="Cnae"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Situacaofiscal">Situacaofiscal</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Situacaofiscal" id="Situacaofiscal" placeholder="Situacaofiscal">
+            <span class="text-danger" asp-validation-for="Situacaofiscal"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Crt">Crt</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Crt" id="Crt" placeholder="Crt">
+            <span class="text-danger" asp-validation-for="Crt"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Aliquotaicms">Aliquotaicms</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Aliquotaicms" id="Aliquotaicms" placeholder="Aliquotaicms">
+            <span class="text-danger" asp-validation-for="Aliquotaicms"></span>
+        </div>
+
+        <div class="mb-3  text-black">
+            <label for="Ativo">Ativo</label>
+            <input type="text" class="form-control" maxlength="40" asp-for="Ativo" id="Ativo" placeholder="Ativo">
+            <span class="text-danger" asp-validation-for="Ativo"></span>
+        </div>
+       
+        <div class="d-flex gap-5 mt-5">
+            <button type="submit" class="btn btn-success w-50">Adicionar</button>
+            <a class="btn btn-primary w-50" asp-controller="Empresa" asp-action="Index">Voltar</a>
+
+        </div>
+       
+    </form>
+</div>
+

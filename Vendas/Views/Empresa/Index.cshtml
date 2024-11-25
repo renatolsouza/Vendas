@@ -1,0 +1,53 @@
+﻿@using Vendas.Models.Cadastro;
+
+@model IEnumerable<EmpresaModel>;
+
+
+
+<div class="Conteiner">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1>Empresa</h1>
+        <a class="btn btn-secondary mx-2" asp-controller="Empresa" asp-action="Cadastrar">Cadastrar novo Ítem</a>
+
+
+    </div>
+
+    <div class="container bg-secondary bg-opacity-10 p-5 rounded-5">
+
+        <table id="Empresa" class="table table-bordered bg-secondary bg-opacity-10 ">
+            <thead>
+                <tr>
+                    <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2" scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Endereco</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Idmunicipio</th>
+                    <th class ="col-xs-4 col-sm-4 col-md-3 col-lg-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if(Model != null)
+                {
+                    @foreach(var empresa in Model)
+                    {
+                        <tr>
+                            <th scope="row">@empresa.Idempresa</th>
+                            <td>@empresa.Nome</td>
+                            <td>@empresa.Endereco</td>
+                            <td>@empresa.Bairro</td>
+                            <td>@empresa.Idmunicipio</td>
+                            <td>
+                                <a asp-controller="Empresa" asp-action="Editar" asp-route-id="@empresa.Idempresa" class="btn btn-warning mx-3">Editar</a>
+                                <a asp-controller="Empresa" asp-action="Excluir" asp-route-id="@empresa.Idempresa" class="btn btn-danger mx-3">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                }
+        
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
