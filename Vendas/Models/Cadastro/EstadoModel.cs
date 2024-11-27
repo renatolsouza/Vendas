@@ -21,6 +21,7 @@ namespace Vendas.Models.Cadastro
 
         [Required(ErrorMessage = "digite o DDD")]
         public string DDD { get; set; }
+        
 
     }
 }

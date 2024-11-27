@@ -1,8 +1,8 @@
-﻿@using Vendas.Models.Cadastro;
+﻿@using Vendas.DTOs
+@using Vendas.Models.Cadastro;
 
-@model IEnumerable<CidadeModel>;
-
-
+@* @model IEnumerable<CidadeModel>; *@
+@model List<CidadeDto>;
 
 
 <div class="Conteiner">
@@ -13,13 +13,14 @@
 
     </div>
 
+   
     <div class="container bg-secondary bg-opacity-10 p-5 rounded-5">
 
         <table id="Cidades" class="table table-bordered bg-secondary bg-opacity-10 ">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
-                   @*  <th scope="col">UF</th> *@
+                    <th scope="col">UF</th>
                     <th scope="col">IBGE</th>
                     <th></th>
                 </tr>
@@ -33,7 +34,7 @@
                         <tr>
                            
                             <td>@cidade.NOME</td>
-                            @* <td>@cidade.Uf</td> *@
+                            <td>@cidade.NOMEUF</td>
                             <td>@cidade.IBGE</td>
                             <td>
                                 <a asp-controller="Cidade" asp-action="Editar" asp-route-id="@cidade.IDCIDADE" class="btn btn-warning mx-3">Editar</a>

@@ -17,9 +17,19 @@
             <span class="text-danger" asp-validation-for="NOME"></span>
         </div>
 
-        <div class="mb-3  text-black">
+       @*  <div class="mb-3  text-black">
             <label for="Uf">Uf</label>
             <input type="text" class="form-control" maxlength="40" asp-for="Uf" id="Uf" placeholder="UF">
+            <span class="text-danger" asp-validation-for="Uf"></span>
+        </div> *@
+
+        <div class="mb-3  text-black">
+            <label for="Uf">Uf</label>
+            <select id="Estado"
+                class="form-select"
+                    asp-items="@ViewBag.Estados"
+                    asp-for="Uf">
+            </select>
             <span class="text-danger" asp-validation-for="Uf"></span>
         </div>
 

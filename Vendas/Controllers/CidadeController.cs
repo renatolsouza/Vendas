@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Vendas.Data;
+using Vendas.DTOs;
 using Vendas.Models.Cadastro;
 
 
@@ -19,33 +22,54 @@ namespace Vendas.Controllers
 
         public IActionResult Index()
         {
-
            
+            return View();
 
-            //var resultado = _db.Cidade.Join(
-            //    _db.Estado,
-            //    C => C.Uf,
-            //    E => E.IDESTADO,
-            //    (C, E) => new { C, E })
+        }
 
-            //    .Select(s => new {
-            //        s.C.IDCIDADE,
-            //        s.C.NOME,
-            //        s.C.Uf,
-            //        s.C.IBGE
+        [HttpGet]
+        public IActionResult index()
+        {
 
-            //    }).ToList();
+            List<CidadeDto> obj = new List<CidadeDto>();
 
-            IEnumerable<CidadeModel> cidade = _db.Cidade;
+            var resultado = (from c in _db.Cidade
+                             join e in _db.Estado on c.Uf equals e.IDESTADO
+                             //where c.IDCIDADE == id
+                             select new
+                             {
+                                 c.IDCIDADE,
+                                 c.NOME,
+                                 UF = c.Uf,
+                                 NOMEUF = e.NOME,
+                                 c.IBGE
 
-            return View(cidade);
+                             });
 
+            foreach (var item in resultado)
+            {
+                CidadeDto clr = new CidadeDto();
 
+                clr.IDCIDADE = item.IDCIDADE;
+                clr.NOME = item.NOME;
+                clr.Uf = item.UF;
+                clr.NOMEUF = item.NOMEUF;
+                clr.IBGE = item.IBGE;
+
+                obj.Add(clr);
+
+            }
+                           
+                return View(obj);
         }
 
         [HttpGet]
         public IActionResult Cadastrar()
         {
+
+            CarregaComboEstados();
+
+
             return View();
         }
 
@@ -56,6 +80,8 @@ namespace Vendas.Controllers
             {
                 _db.Cidade.Add(cidade);
                 _db.SaveChanges();
+
+
                 return RedirectToAction("Index");
 
             }
@@ -65,10 +91,14 @@ namespace Vendas.Controllers
         [HttpGet]
         public IActionResult Editar(int? id)
         {
+            CarregaComboEstados();
+
             if (id == null || id == 0)
             {
                 return NotFound();
             }
+
+
             CidadeModel cidade = _db.Cidade.FirstOrDefault(x => x.IDCIDADE == id);
             if (cidade == null)
             {
@@ -85,6 +115,8 @@ namespace Vendas.Controllers
             {
                 _db.Cidade.Update(cidade);
                 _db.SaveChanges();
+
+
                 return RedirectToAction("Index");
 
             }
@@ -94,6 +126,8 @@ namespace Vendas.Controllers
         [HttpGet]
         public IActionResult Excluir(int? id)
         {
+            CarregaComboEstados();
+
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -119,9 +153,18 @@ namespace Vendas.Controllers
 
             _db.Cidade.Remove(cidade);
             _db.SaveChanges();
+
+
             return RedirectToAction("Index");
 
 
+
+        }
+        public void CarregaComboEstados()
+        {
+            //-- Carrega os estados em uma ViewBag pra popular combobox
+            ViewBag.Estados = EstadoController.GetEstados(_db).Select(c => new SelectListItem()
+            { Text = c.NOME, Value = c.IDESTADO.ToString() }).ToList();
 
         }
     }

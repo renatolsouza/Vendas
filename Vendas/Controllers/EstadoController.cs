@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vendas.Data;
+using Vendas.DTOs;
 using Vendas.Models.Cadastro;
 
 namespace Vendas.Controllers
@@ -26,6 +27,7 @@ namespace Vendas.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+           
             return View();
         }
 
@@ -104,8 +106,37 @@ namespace Vendas.Controllers
 
 
         }
+
+        public static List<EstadoDto> GetEstados(AplicationDbContext _db)
+        {
+            List<EstadoDto> obj = new List<EstadoDto>();
+
+            var resultado = from c in _db.Estado
+                             
+                             select new
+                             {
+                                 c.IDESTADO,
+                                 c.NOME                                
+
+                             };
+
+            foreach (var item in resultado)
+            {
+                EstadoDto clr = new EstadoDto();
+
+                clr.IDESTADO = item.IDESTADO;
+                clr.NOME = item.NOME;
+                
+                obj.Add(clr);
+
+            }
+
+            return obj;
+
+        }
     }
 }
+
 
 
 

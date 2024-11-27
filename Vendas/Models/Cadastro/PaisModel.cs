@@ -19,6 +19,8 @@ namespace Vendas.Models.Cadastro
 
         [Required(ErrorMessage = "digite o Bacen")]
         public int BACEN { get; set; }
+        
+
 
 
     }
